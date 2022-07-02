@@ -5,6 +5,7 @@ $icons-color-dark: #00112C;
 $fields-background: #DDE4FF;
 $h2-color: #1E3356;
 $save-button: #1E3356;
+$default-img-background: #DDE9FF;
 
 
 @mixin flex($justify,$align) {
@@ -244,6 +245,64 @@ button {
           .icon-chevron {
             @include clickable-icon($dark-blue, 12px);
           }
+
+          &-open {
+            background-color: $fields-background;
+            box-shadow: none;
+
+            .icon-chevron {
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .options-container {
+          width: 188px;
+          position: absolute;
+          z-index: 2;
+          box-shadow: -4px 5px 20px rgba(180, 177, 177, 0.2);
+          border-radius: 10px;
+          background-color: white;
+
+          .option {
+            padding: 6px 8px;
+            @include flex(left, center);
+
+            &:hover {
+              cursor: pointer;
+              background-color: darken(white, 3%);
+            }
+
+            .default-img {
+              width: 40px;
+              height: 40px;
+              background-color: $default-img-background;
+              border-radius: 50%;
+              @include flex(center, center);
+
+              i {
+                font-size: 18px;
+                color: $icons-color-dark;
+              }
+            }
+
+            .info {
+              margin-left: 20px;
+
+              h3 {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 20px;
+                color: $icons-color-dark;
+              }
+
+              p {
+                color: black;
+                font-size: 10px;
+                line-height: 20px;
+              }
+            }
+          }
         }
       }
     }
@@ -281,6 +340,10 @@ button {
     }
   }
 }
+
+
+
+
 
 
 

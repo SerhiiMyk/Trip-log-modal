@@ -94,16 +94,35 @@
             </div>
           </div>
 
-          <div class="registration-number-div">
+          <div class="registration-number-div" #optionsDiv>
             <p>Registration number</p>
-            <div class="registration">
+            <div class="registration" (click)="showRegistrationOptions=!showRegistrationOptions"
+                 [class.registration-open]="showRegistrationOptions">
               <div class="flex">
                 <i class="icon-gear"></i>
-                <p>Registration</p>
+                <p>{{form.get('registration')?.value}}</p>
               </div>
               <i class="icon-chevron"></i>
             </div>
+
+            <div class="options-container" *ngIf="showRegistrationOptions">
+              <div *ngFor="let option of options" class="option" (click)="select(option)">
+                <img *ngIf="option.imageUrl, else defaultImg" [src]="option.imageUrl" alt="car image">
+                <ng-template #defaultImg>
+                  <div class="default-img">
+                    <i class="icon-camera"></i>
+                  </div>
+                </ng-template>
+                <div class="info">
+                  <h3>{{option.registration}}</h3>
+                  <p>{{option.make}} {{option.model}}</p>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+
         </div>
       </div>
 
