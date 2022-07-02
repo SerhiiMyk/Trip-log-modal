@@ -1,0 +1,286 @@
+$main-background: #A5AEBC;
+$modal-background: #F5F5F5;
+$dark-blue: #232B38;
+$icons-color-dark: #00112C;
+$fields-background: #DDE4FF;
+$h2-color: #1E3356;
+$save-button: #1E3356;
+
+
+@mixin flex($justify,$align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin container($background-color,$icon-size) {
+  width: 170px;
+  height: 50px;
+  @include flex(left, center);
+  padding: 0 12px;
+  background-color: $background-color;
+  box-shadow: -4px 5px 20px rgba(180, 177, 177, 0.2);
+  border-radius: 10px;
+
+  input {
+    width: 130px;
+    background-color: $background-color;
+  }
+
+  i {
+    font-size: $icon-size;
+    color: $dark-blue;
+  }
+  p {
+    margin-left: 6px;
+    font-size: 16px;
+  }
+}
+
+@mixin clickable-icon($color,$font-size) {
+  font-size: $font-size;
+  color: $color;
+  &:hover {
+    color: lighten($color, 30%);
+    cursor: pointer;
+  }
+}
+
+.flex {
+  @include flex(left, center);
+}
+
+
+input {
+  padding: 0 12px 0 6px;
+  outline: none;
+  border: none;
+  background-color: $fields-background;
+  font-size: 16px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: $h2-color;
+}
+
+button {
+  height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+}
+
+.wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  @include flex(center, center);
+  background-color: $main-background;
+
+  .container {
+    position: relative;
+    width: 940px;
+    height: 640px;
+    padding: 35px 90px;
+    box-shadow: -4px 6px 20px 2px rgba(35, 43, 56, 0.2);
+    border-radius: 20px;
+    background-color: white;
+
+    .icon-close {
+      @include clickable-icon($dark-blue, 14px);
+      position: absolute;
+      top: 53px;
+      right: 105px;
+    }
+
+    .log-name {
+      @include flex(left, center);
+      height: 25px;
+
+      p {
+        font-weight: 600;
+        font-size: 18px;
+        margin-right: 30px;
+        color: $dark-blue;
+
+      }
+
+      input {
+        width: 170px;
+        font-size: 18px;
+        font-weight: 600;
+        color: $dark-blue;
+        margin-right: 30px;
+        padding: 0;
+        outline: none;
+        border: none;
+        background-color: white;
+        border-bottom: 3px solid $fields-background;
+      }
+    }
+
+    .icon-pencil {
+      @include clickable-icon($dark-blue, 18px);
+    }
+
+    .departure-arrival {
+      margin-top: 52px;
+      @include flex(space-between, center);
+
+      .departure {
+        .from {
+          @include container($fields-background, 22px);
+        }
+      }
+
+      .departure-time {
+        padding-top: 7px;
+
+        .time-input {
+          @include container(white, 20px);
+        }
+      }
+
+      .duration {
+        @include container($fields-background, 20px);
+        width: auto;
+
+      }
+    }
+
+    .driver-information {
+      width: 400px;
+      box-shadow: -4px 5px 20px rgba(180, 177, 177, 0.2);
+      border-radius: 10px;
+      margin-top: 40px;
+
+      .self {
+        @include container($fields-background, 16px);
+        width: 188px;
+        cursor: pointer;
+        transition: 200ms;
+
+        &:hover {
+          background-color: lighten($fields-background, 3%);
+        }
+
+        &-disabled {
+          width: 52px;
+          background-color: white;
+          transition: 200ms;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .other {
+        @include container(white, 22px);
+        margin-left: 25px;
+        padding: 0 8px;
+        width: 188px;
+        box-shadow: none;
+        cursor: pointer;
+        transition: 200ms;
+
+        &:hover {
+          background-color: darken(white, 3%);
+        }
+
+        &-active {
+          width: 92px;
+          background-color: $fields-background;
+          margin: 0;
+          padding: 0 8px;
+          transition: 200ms;
+        }
+      }
+
+      &-other {
+        box-shadow: none;
+      }
+
+      .driver-name {
+        @include container(white, 18px);
+        width: 232px;
+        margin-left: 24px;
+        @include flex(space-between, center);
+
+        &-active {
+          box-shadow: -4px 5px 20px darken($fields-background, 5%)
+        }
+      }
+    }
+
+    .car-information {
+      width: 400px;
+      margin-top: 40px;
+
+      .model {
+        @include container(white, 24px);
+        width: 188px;
+      }
+
+      .registration-number-div {
+        margin-left: 25px;
+
+        .registration {
+          @include container(white, 19px);
+          width: 188px;
+          @include flex(space-between, center);
+
+          &:hover {
+            cursor: pointer;
+            background-color: darken(white, 3%);
+          }
+
+          .icon-chevron {
+            @include clickable-icon($dark-blue, 12px);
+          }
+        }
+      }
+    }
+
+    .button-div {
+      @include flex(right, center);
+      margin-top: 40px;
+
+      .draft {
+        width: 97px;
+        color: $icons-color-dark;
+        background-color: white;
+
+        &:hover {
+          cursor: pointer;
+          color: lighten($icons-color-dark, 30%);
+          transition: 200ms;
+        }
+      }
+
+      .save {
+        width: 180px;
+        margin-left: 21px;
+        background: $save-button;
+        border-radius: 100px;
+        color: white;
+        transition: 200ms;
+
+        &:hover {
+          cursor: pointer;
+          background-color: lighten($save-button, 10%);
+          transition: 200ms;
+        }
+      }
+    }
+  }
+}
+
+
+

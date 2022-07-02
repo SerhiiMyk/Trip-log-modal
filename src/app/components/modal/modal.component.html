@@ -1,0 +1,117 @@
+<div class="wrap">
+  <div class="container">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <i class="icon-close"></i>
+
+      <div class="log-name">
+        <input *ngIf="showInputs.shLogName" type="text" formControlName="logName">
+        <p *ngIf="!showInputs.shLogName">{{form.get('logName')?.value}}</p>
+        <i (click)="showInputs.shLogName=!showInputs.shLogName" class="icon-pencil"></i>
+      </div>
+
+      <div class="departure-arrival">
+
+        <div>
+          <div class="departure">
+            <p>Departure</p>
+            <div class="from">
+              <i class="icon-location"></i>
+              <input type="text" placeholder="from" formControlName="from">
+            </div>
+          </div>
+
+          <div class="departure-time">
+            <p>Departure date and time</p>
+            <div class="time-input">
+              <i class="icon-clock"></i>
+              <input type="text" placeholder="--/--/----|--:--" formControlName="departureTime">
+            </div>
+          </div>
+        </div>
+
+        <div class="duration">
+          <i class="icon-clock"></i>
+          <p>0 h 0 m</p>
+        </div>
+
+        <div>
+          <div class="departure">
+            <p>Departure</p>
+            <div class="from">
+              <i class="icon-location"></i>
+              <input type="text" placeholder="to" formControlName="to">
+            </div>
+          </div>
+
+          <div class="departure-time">
+            <p>Departure date and time</p>
+            <div class="time-input">
+              <i class="icon-clock"></i>
+              <input type="text" placeholder="--/--/----|--:--" formControlName="arrivalTime">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="driver-information" [class.driver-information-other]="showDriverNameEl">
+        <h2>Driver information</h2>
+        <p>Driver</p>
+
+        <div class="flex">
+          <div class="self" [class.self-disabled]="showDriverNameEl" (click)="showDriverNameEl=false">
+            <i *ngIf="!showDriverNameEl" class="icon-person"></i>
+            <p>Self</p>
+          </div>
+
+          <div class="other" [class.other-active]="showDriverNameEl" (click)="showDriverNameEl=true">
+            <i *ngIf="showDriverNameEl" class="icon-persons"></i>
+            <p>Other</p>
+          </div>
+
+          <div *ngIf="showDriverNameEl" class="driver-name" [class.driver-name-active]="showInputs.shDriverName">
+            <div class="flex">
+              <i class="icon-persons"></i>
+              <input *ngIf="showInputs.shDriverName" type="text" formControlName="driverName">
+              <p *ngIf="!showInputs.shDriverName">{{form.get('driverName')?.value}}</p>
+            </div>
+            <i (click)="showInputs.shDriverName=!showInputs.shDriverName" class="icon-pencil"></i>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="car-information">
+        <h2>Car information</h2>
+        <div class="flex">
+
+          <div>
+            <p>Make & model</p>
+            <div class="model">
+              <i class="icon-steering-wheel"></i>
+              <p>{{form.get('make')?.value}} | {{form.get('model')?.value}}</p>
+            </div>
+          </div>
+
+          <div class="registration-number-div">
+            <p>Registration number</p>
+            <div class="registration">
+              <div class="flex">
+                <i class="icon-gear"></i>
+                <p>Registration</p>
+              </div>
+              <i class="icon-chevron"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-div">
+        <button class="draft" type="submit">Drafts</button>
+        <button class="save" type="submit">Save to log book</button>
+      </div>
+
+    </form>
+  </div>
+</div>
