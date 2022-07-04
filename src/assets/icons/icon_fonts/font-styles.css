@@ -57,3 +57,9 @@
 .icon-steering-wheel:before {
   content: "\e909";
 }
+.icon-arrow-left:before {
+  content: "\e90a";
+}
+.icon-arrow-right:before {
+  content: "\e90b";
+}

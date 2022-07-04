@@ -1,56 +1,9 @@
-$main-background: #A5AEBC;
-$modal-background: #F5F5F5;
-$dark-blue: #232B38;
-$icons-color-dark: #00112C;
-$fields-background: #DDE4FF;
-$h2-color: #1E3356;
-$save-button: #1E3356;
-$default-img-background: #DDE9FF;
-
-
-@mixin flex($justify,$align) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
-}
-
-@mixin container($background-color,$icon-size) {
-  width: 170px;
-  height: 50px;
-  @include flex(left, center);
-  padding: 0 12px;
-  background-color: $background-color;
-  box-shadow: -4px 5px 20px rgba(180, 177, 177, 0.2);
-  border-radius: 10px;
-
-  input {
-    width: 130px;
-    background-color: $background-color;
-  }
-
-  i {
-    font-size: $icon-size;
-    color: $dark-blue;
-  }
-  p {
-    margin-left: 6px;
-    font-size: 16px;
-  }
-}
-
-@mixin clickable-icon($color,$font-size) {
-  font-size: $font-size;
-  color: $color;
-  &:hover {
-    color: lighten($color, 30%);
-    cursor: pointer;
-  }
-}
+@import "mixins";
+@import "color-variables";
 
 .flex {
   @include flex(left, center);
 }
-
 
 input {
   padding: 0 12px 0 6px;
@@ -143,8 +96,12 @@ button {
       .departure-time {
         padding-top: 7px;
 
-        .time-input {
+        .time{
           @include container(white, 20px);
+          &:hover{
+            cursor: pointer;
+            box-shadow: -4px 5px 20px darken($fields-background, 5%)
+          }
         }
       }
 

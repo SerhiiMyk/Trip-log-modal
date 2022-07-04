@@ -19,20 +19,24 @@
               <i class="icon-location"></i>
               <input type="text" placeholder="from" formControlName="from">
             </div>
+
           </div>
 
           <div class="departure-time">
             <p>Departure date and time</p>
-            <div class="time-input">
+            <div class="time" (click)="showDepartureDatepicker=!showDepartureDatepicker">
               <i class="icon-clock"></i>
-              <input type="text" placeholder="--/--/----|--:--" formControlName="departureTime">
+              <p>{{departureDateStr}}</p>
             </div>
+            <app-date-picker *ngIf="showDepartureDatepicker" (emit)="onEmit($event,'departure')"
+                             [datepicker]="departureDatepicker">
+            </app-date-picker>
           </div>
         </div>
 
         <div class="duration">
           <i class="icon-clock"></i>
-          <p>0 h 0 m</p>
+          <p>{{durationStr}}</p>
         </div>
 
         <div>
@@ -46,10 +50,13 @@
 
           <div class="departure-time">
             <p>Departure date and time</p>
-            <div class="time-input">
+            <div class="time" (click)="showArriveDatepicker=!showArriveDatepicker">
               <i class="icon-clock"></i>
-              <input type="text" placeholder="--/--/----|--:--" formControlName="arrivalTime">
+              <p>{{arrivalDateStr}}</p>
             </div>
+            <app-date-picker *ngIf="showArriveDatepicker" (emit)="onEmit($event,'arrive')"
+                             [datepicker]="arriveDatepicker">
+            </app-date-picker>
           </div>
         </div>
 

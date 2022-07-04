@@ -1,0 +1,49 @@
+<div class="datepicker-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="time-block">
+      <h3>Time</h3>
+      <div class="time-container">
+        <div class="time-selectors">
+          <select formControlName="hours">
+            <option *ngFor="let i of [].constructor(13), let ind = index" [value]="ind">{{ind}}</option>
+          </select>
+          <p>:</p>
+          <select formControlName="minutes">
+            <option *ngFor="let i of [].constructor(61), let ind = index" [value]="ind">{{ind}}</option>
+          </select>
+          <p>:</p>
+          <select formControlName="dayPart">
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+          </select>
+        </div>
+        <button>OK</button>
+      </div>
+    </div>
+
+    <div class="date-block">
+      <h3>Date</h3>
+      <div class="navigation-div">
+        <p>{{form.get('year')?.value}}</p>
+        <p class="month">{{months[currentMonth]}}</p>
+        <div class="arrow-div">
+          <i class="icon-arrow-left" (click)="changeMonth('previous')"></i>
+          <i class="icon-arrow-right" (click)="changeMonth('next')"></i>
+        </div>
+      </div>
+      <div class="calendar">
+        <div class="week-days">
+          <h3 *ngFor="let dayName of ['M', 'T', 'W', 'T', 'F', 'S', 'S']">{{dayName}}</h3>
+        </div>
+        <div class="month-days">
+          <div class="day"
+               *ngFor="let i of [].constructor(daysOnMonths[form.value.month]), let ind = index"
+               (click)="setDay(ind + 1)">{{ind + 1}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="done-btn-div">
+      <button class="done" type="submit">Done</button>
+    </div>
+  </form>
+</div>
